@@ -12,6 +12,16 @@
 </body>
 
 <script>
+    //Set the counter for the number of wins a computer & person gets so far
+    let humanWinCount = 0;
+    let computerWinCount = 0;
+
+    //Display the counter for the computer & person gets so far
+    function displayCounter() {
+        console.log("Human win count: " + humanWinCount);
+        console.log("Computer win count: " + computerWinCount);
+    }
+
     // User will input a string **exclusively** as "Rock", "Paper" or "Scissors"
     function getHumanPick() {
         let userPick = prompt("Pick between Rock, Paper, Scissors").toLowerCase();
@@ -21,7 +31,6 @@
         }
         return userPick;
     }
-    let userPick = getHumanPick();
 
 
     // Computer picks between 3 choices "Rock", "Paper" or "Scissors"
@@ -29,59 +38,76 @@
         let computerPick = 1 + Math.floor(Math.random() * 3);
         switch (computerPick) {
             case 1:
-                computerPick = "rock";
+                return "rock";
                 break;
             case 2:
-                computerPick = "paper";
+                return "paper";
                 break
             case 3:
-                computerPick = "scissors";
+                return "scissors";
                 break
         }
     }
 
-
-
     // Compare the choices made between 2 players
-    // If one picked rock & the other picked paper, then the paper person wins
-    if (userPick === "rock" && computerPick === "paper" || computerPick === "rock" && userPick === "paper") {
-        //Check which pick contain the string "paper" to determine the winner
-        let winnerPick = "paper";
-        if (userPick === winnerPick) {
-            console.log("Human win!");
-        } else {
-            console.log("Computer win!");
+    function playRound(userPick, computerPick) {
+        // If one picked rock & the other picked paper, then the paper person wins and gets the point
+        if (userPick === "rock" && computerPick === "paper" || computerPick === "rock" && userPick === "paper") {
+            //Check which pick contain the string "paper" to determine the winner
+            let winnerPick = "paper";
+            if (userPick === winnerPick) {
+                console.log("Human win!");
+                humanWinCount += 1;
+                displayCounter()
+            } else {
+                console.log("Computer win!");
+                computerWinCount += 1;
+                displayCounter();
+            }
         }
-    }
-    // If one picked paper & the other picked scissors, then the scissors person wins
-    else if (userPick === "paper" && computerPick === "scissors" || computerPick === "paper" && userPick === "scissors") {
-        //Check which pick contain the string "scissors" to determine the winner
-        let winnerPick = "scissors";
-        if (userPick === winnerPick) {
-            console.log("Human win!");
-        } else {
-            console.log("Computer win!");
+        // If one picked paper & the other picked scissors, then the scissors person wins and gets the point
+        else if (userPick === "paper" && computerPick === "scissors" || computerPick === "paper" && userPick === "scissors") {
+            //Check which pick contain the string "scissors" to determine the winner
+            let winnerPick = "scissors";
+            if (userPick === winnerPick) {
+                console.log("Human win!");
+                humanWinCount += 1;
+                displayCounter()
+            } else {
+                console.log("Computer win!");
+                computerWinCount += 1;
+                displayCounter();
+            }
+        }
+
+        // If one picked scissors & the other picked rock, then the rock person wins and gets the point
+        else if (userPick === "scissors" && computerPick === "rock" || computerPick === "scissors" && userPick === "rock") {
+            //Check which pick contain the string "scissors" to determine the winner
+            let winnerPick = "rock";
+            if (userPick === winnerPick) {
+                console.log("Human win!");
+                humanWinCount += 1;
+                displayCounter()
+            } else {
+                console.log("Computer win!");
+                computerWinCount += 1;
+                displayCounter();
+            }
+        }
+        // If both have the same pick, then it's a draw
+        else if (userPick === computerPick) {
+            console.log("It's a draw");
+            displayCounter();
+        }
+        // Anything other than this is invalid
+        else {
+            console.log("Invalid");
         }
     }
 
-    // If one picked scissors & the other picked rock, then the rock person wins
-    else if (userPick === "scissors" && computerPick === "rock" || computerPick === "scissors" && userPick === "rock") {
-        //Check which pick contain the string "scissors" to determine the winner
-        let winnerPick = "rock";
-        if (userPick === winnerPick) {
-            console.log("Human win!");
-        } else {
-            console.log("Computer win!");
-        }
-    }
-    // If both have the same pick, then it's a draw
-    else if (userPick === computerPick) {
-        console.log("It's a draw");
-    }
-    // Anything other than this is invalid
-    else {
-        console.log("Invalid");
-    }
+    let userPick = getHumanPick();
+    let computerPick = getComputerPick();
+    playRound(userPick, computerPick);
 
 </script>
 
