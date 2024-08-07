@@ -12,11 +12,11 @@
 </body>
 
 <script>
-    //Set the counter for the number of wins a computer & person gets so far
+    // Set the counter for the number of wins a computer & person gets so far
     let humanWinCount = 0;
     let computerWinCount = 0;
 
-    //Display the counter for the computer & person gets so far
+    // Display the counter for the computer & person gets so far
     function displayCounter() {
         console.log("Human win count: " + humanWinCount);
         console.log("Computer win count: " + computerWinCount);
@@ -49,10 +49,17 @@
         }
     }
 
-    // Once the user & computer picked, a round starts by comparing the picks made between 2 players & determine who's the winner.
+    /*
+    Once the user & computer picked, a round starts by 
+    comparing the picks made between 2 players & determine who's the winner.
+    */
     function playRound(userPick, computerPick) {
-        // If one picked rock & the other picked paper, then the paper person wins and gets the point
-        if (userPick === "rock" && computerPick === "paper" || computerPick === "rock" && userPick === "paper") {
+        /*
+         If one picked rock & the other picked paper, 
+        then the paper person wins and gets the point.
+        */
+        if (userPick === "rock" && computerPick === "paper"
+            || computerPick === "rock" && userPick === "paper") {
             //Check which pick contain the string "paper" to determine the winner
             let winnerPick = "paper";
             if (userPick === winnerPick) {
@@ -65,8 +72,12 @@
                 displayCounter();
             }
         }
-        // If one picked paper & the other picked scissors, then the scissors person wins and gets the point
-        else if (userPick === "paper" && computerPick === "scissors" || computerPick === "paper" && userPick === "scissors") {
+        /*
+        If one picked paper & the other picked scissors, 
+        then the scissors person wins and gets the point
+        */
+        else if (userPick === "paper" && computerPick === "scissors"
+            || computerPick === "paper" && userPick === "scissors") {
             //Check which pick contain the string "scissors" to determine the winner
             let winnerPick = "scissors";
             if (userPick === winnerPick) {
@@ -80,8 +91,12 @@
             }
         }
 
-        // If one picked scissors & the other picked rock, then the rock person wins and gets the point
-        else if (userPick === "scissors" && computerPick === "rock" || computerPick === "scissors" && userPick === "rock") {
+        /* 
+        If one picked scissors & the other picked rock, 
+        then the rock person wins and gets the point
+        */
+        else if (userPick === "scissors" && computerPick === "rock"
+            || computerPick === "scissors" && userPick === "rock") {
             //Check which pick contain the string "scissors" to determine the winner
             let winnerPick = "rock";
             if (userPick === winnerPick) {
@@ -94,12 +109,11 @@
                 displayCounter();
             }
         }
-        // If both have the same pick, then it's a draw
+        // If both have the same picks, then it's a draw
         else if (userPick === computerPick) {
             console.log("It's a draw");
             displayCounter();
         }
-        // Anything other than this is invalid
         else {
             console.log("Invalid");
         }
@@ -114,7 +128,7 @@
             playRound(userPick, computerPick);
         }
     }
-    //Start a game of rock, paper, scissors 
+
     playGame();
 
 </script>
