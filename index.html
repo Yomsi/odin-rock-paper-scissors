@@ -9,31 +9,38 @@
 
 <body>
 
-
 </body>
 
 <script>
     // User will input a string **exclusively** as "Rock", "Paper" or "Scissors"
-    var userPick = prompt("Pick between Rock, Paper, Scissors").toLowerCase();
-    console.log(userPick);
-
-
-    while (userPick != ("rock" || "paper" || "scissors")) {
-        let userPick = prompt("Please only pick between Rock, Paper, Scissors").toLowerCase;
+    function getHumanPick() {
+        let userPick = prompt("Pick between Rock, Paper, Scissors").toLowerCase();
+        console.log(userPick);
+        while (!["rock", "paper", "scissors"].includes(userPick)) {
+            userPick = prompt("Please only pick between Rock, Paper, Scissors").toLowerCase();
+        }
+        return userPick;
     }
+    let userPick = getHumanPick();
+
+
     // Computer picks between 3 choices "Rock", "Paper" or "Scissors"
-    let computerPick = Math.floor(Math.random() * 3) + 1;
-    switch (computerPick) {
-        case 1:
-            computerPick = "rock";
-            break;
-        case 2:
-            computerPick = "paper";
-            break
-        case 3:
-            computerPick = "scissors";
-            break
+    function getComputerPick() {
+        let computerPick = 1 + Math.floor(Math.random() * 3);
+        switch (computerPick) {
+            case 1:
+                computerPick = "rock";
+                break;
+            case 2:
+                computerPick = "paper";
+                break
+            case 3:
+                computerPick = "scissors";
+                break
+        }
     }
+
+
 
     // Compare the choices made between 2 players
     // If one picked rock & the other picked paper, then the paper person wins
@@ -47,7 +54,7 @@
         }
     }
     // If one picked paper & the other picked scissors, then the scissors person wins
-    if (userPick === "paper" && computerPick === "scissors" || computerPick === "paper" && userPick === "scissors") {
+    else if (userPick === "paper" && computerPick === "scissors" || computerPick === "paper" && userPick === "scissors") {
         //Check which pick contain the string "scissors" to determine the winner
         let winnerPick = "scissors";
         if (userPick === winnerPick) {
@@ -58,7 +65,7 @@
     }
 
     // If one picked scissors & the other picked rock, then the rock person wins
-    if (userPick === "scissors" && computerPick === "rock" || computerPick === "scissors" && userPick === "rock") {
+    else if (userPick === "scissors" && computerPick === "rock" || computerPick === "scissors" && userPick === "rock") {
         //Check which pick contain the string "scissors" to determine the winner
         let winnerPick = "rock";
         if (userPick === winnerPick) {
@@ -68,13 +75,14 @@
         }
     }
     // If both have the same pick, then it's a draw
-    if (userPick === computerPick) {
+    else if (userPick === computerPick) {
         console.log("It's a draw");
     }
     // Anything other than this is invalid
     else {
         console.log("Invalid");
     }
+
 </script>
 
 </html>
