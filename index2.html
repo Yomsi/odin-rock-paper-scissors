@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rock Paper Scissors</title>
+</head>
+
+<body>
+    <div id="results">
+
+        <h4>Pick between Rock, Paper, Scissors</h4>
+        <button id="rock">Rock</button>
+        <button id="paper">Paper</button>
+        <button id="scissors">Scissors</button>
+        <p id="round"></p>
+        <p id="humanWinCount"></p>
+        <p id="computerWinCount"></p>
+        <p id="roundWinner"></p>
+        <p id="overallWinner"></p>
+    </div>
+</body>
+
+<script>
+    // Set the counter for the number of wins a computer & person gets so far
+    let humanWinCount = 0;
+    let computerWinCount = 0;
+    const divResults = document.querySelector("#results");
+    const paragraphRound = document.querySelector("#round")
+    const paragraphHumanWinCount = document.querySelector("#humanWinCount");
+    const paragraphComputerWinCount = document.querySelector("#computerWinCount");
+    const roundWinner = document.querySelector("#roundWinner");
+    const overallWinner = document.querySelector("#overallWinner");
+
+
+    // Display the counter for the computer & person gets so far
+    function displayCounter() {
+        // Change the text content on-screen 
+        paragraphHumanWinCount.textContent = "Human win count: " + humanWinCount;
+        paragraphComputerWinCount.textContent = "Computer win count: " + computerWinCount;
+    }
+
+
+    // User will pick a button between "Rock", "Paper" or "Scissors"
+    function getHumanPick() {
+        // Return a string between rock, paper, or scissors
+        const buttons = document.querySelectorAll("button");
+        let buttonClicked = "";
+        buttons.forEach((button) => {
+            button.addEventListener("click", () => {
+                buttonClicked = (button.id);
+                return buttonClicked;
+            });
+        });
+    }
+
+
+
+    // Computer picks between 3 choices "Rock", "Paper" or "Scissors"
+    function getComputerPick() {
+        // Pick random number from 1 to 3
+        let randomNumber = 1 + Math.floor(Math.random() * 3)
+        let computerPick = randomNumber;
+        switch (computerPick) {
+            case 1:
+                return "rock";
+                break;
+            case 2:
+                return "paper";
+                break
+            case 3:
+                return "scissors";
+                break
+        }
+    }
+
+    /*
+    Once the user & computer picked, a round starts by 
+    comparing the picks made between 2 players & determine who's the winner.
+    */
+    function playRound(userPick, computerPick) {
+        /*
+        If one picked rock & the other picked paper, 
+        then the paper person wins and gets the point.
+        */
+        if (userPick === "rock" && computerPick === "paper"
+            || computerPick === "rock" && userPick === "paper") {
+            //Check which pick contain the string "paper" to determine the winner of a round
+            let winnerPick = "paper";
+            if (userPick === winnerPick) {
+                roundWinner.textContent = "Human win!";
+                humanWinCount += 1;
+                displayCounter()
+            } else {
+                roundWinner.textContent = "Computer win!";
+                computerWinCount += 1;
+                displayCounter();
+            }
+        }
+        /*
+        If one picked paper & the other picked scissors, 
+        then the scissors person wins and gets the point
+        */
+        else if (userPick === "paper" && computerPick === "scissors"
+            || computerPick === "paper" && userPick === "scissors") {
+            //Check which pick contain the string "scissors" to determine the winner
+            let winnerPick = "scissors";
+            if (userPick === winnerPick) {
+                roundWinner.textContent = "Human win!";
+                humanWinCount += 1;
+                displayCounter()
+            } else {
+                roundWinner.textContent = "Computer win!";
+                computerWinCount += 1;
+                displayCounter();
+            }
+        }
+        /*
+        If one picked scissors & the other picked rock,
+        then the rock person wins and gets the point
+        */
+        else if (userPick === "scissors" && computerPick === "rock"
+            || computerPick === "scissors" && userPick === "rock") {
+            //Check which pick contain the string "scissors" to determine the winner
+            let winnerPick = "rock";
+            if (userPick === winnerPick) {
+                roundWinner.textContent = "Human win!";
+                humanWinCount += 1;
+                displayCounter()
+            } else {
+                roundWinner.textContent = "Computer win!";
+                computerWinCount += 1;
+                displayCounter();
+            }
+        }
+        // If both have the same picks, then it's a draw
+        else if (userPick === computerPick) {
+            roundWinner.textContent = "It's a draw";
+            displayCounter();
+        }
+    }
+
+    //A game of rock paper scissors will go on until 1 person wins 5 rounds
+
+
+</script>
+
+</html>
