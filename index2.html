@@ -41,45 +41,58 @@
         paragraphComputerWinCount.textContent = "Computer win count: " + computerWinCount;
     }
 
-
     // User will pick a button between "Rock", "Paper" or "Scissors"
-    function getHumanPick() {
-        // Return a string between rock, paper, or scissors
-        const buttons = document.querySelectorAll("button");
-        let buttonClicked = "";
-        buttons.forEach((button) => {
-            button.addEventListener("click", () => {
-                buttonClicked = (button.id);
-                return buttonClicked;
-            });
+    const buttons = document.querySelectorAll("button");
+    // we use the .forEach method to iterate through each button
+    buttons.forEach((button) => {
+        // and for each one we add a 'click' listener
+        button.addEventListener("click", () => {
+            /* 
+            Once the user click on a button, that choice will 
+            be recorded & the round will start 
+            */
+
+            if (humanWinCount === 5 || computerWinCount === 5) {
+                if (humanWinCount === 5) {
+                    overallWinner.textContent = "HUMAN WIN! GAME OVER"
+                } else {
+                    overallWinner.textContent = "COMPUTER WIN! GAME OVER"
+                }
+            } else {
+                playRound(button.id);
+            }
+
         });
-    }
+    });
 
 
-
-    // Computer picks between 3 choices "Rock", "Paper" or "Scissors"
-    function getComputerPick() {
-        // Pick random number from 1 to 3
-        let randomNumber = 1 + Math.floor(Math.random() * 3)
-        let computerPick = randomNumber;
-        switch (computerPick) {
-            case 1:
-                return "rock";
-                break;
-            case 2:
-                return "paper";
-                break
-            case 3:
-                return "scissors";
-                break
-        }
-    }
 
     /*
-    Once the user & computer picked, a round starts by 
-    comparing the picks made between 2 players & determine who's the winner.
-    */
-    function playRound(userPick, computerPick) {
+     A round starts by 
+     comparing the picks made between a human & computer & determine who's the winner.
+     */
+    function playRound(userPick) {
+
+
+        // Computer picks between 3 choices "Rock", "Paper" or "Scissors"
+        function getComputerPick() {
+            // Pick random number from 1 to 3
+            let randomNumber = 1 + Math.floor(Math.random() * 3)
+            let computerPick = randomNumber;
+            switch (computerPick) {
+                case 1:
+                    return "rock";
+                    break;
+                case 2:
+                    return "paper";
+                    break
+                case 3:
+                    return "scissors";
+                    break
+            }
+        }
+        let computerPick = getComputerPick();
+
         /*
         If one picked rock & the other picked paper, 
         then the paper person wins and gets the point.
@@ -141,7 +154,14 @@
         }
     }
 
-    //A game of rock paper scissors will go on until 1 person wins 5 rounds
+
+
+
+
+
+
+
+
 
 
 </script>
